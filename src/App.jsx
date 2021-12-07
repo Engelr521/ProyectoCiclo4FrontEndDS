@@ -8,18 +8,20 @@ import Page2 from 'pages/Page2';
 import IndexCategory1 from 'pages/category1/Index';
 import Category1 from 'pages/category1/CategoryPage1';
 import 'styles/globals.css';
+import IndexUsuarios from 'pages/usuarios';
+import EditarUsuario from 'pages/usuarios/editar';
 
 // import PrivateRoute from 'components/PrivateRoute';
 
 
 //funcion para pasar la url del servidor de apollo, ademas sirven para agregar los tokens del backend
-const httpLink = createHttpLink ({
-  uri: 'https://servidor-graphql-mintic-leo.herokuapp.com/graphql'
-});
+// const httpLink = createHttpLink ({
+//   uri: 'https://servidor-graphql-mintic-leo.herokuapp.com/graphql'
+// });
 
 // crear una variable del cliens de apollo
 const client = new ApolloClient ({
-  uri: httpLink
+  uri: 'https://servidor-graphql-mintic-leo.herokuapp.com/graphql',
   cache : new InMemoryCache()
 });
 
@@ -33,6 +35,8 @@ function App() {
             <Routes>
               <Route path='/' element={<PrivateLayout />}>
                 <Route path='' element={<Index />} />
+                <Route path='/usuarios' element={<IndexUsuarios />} />
+                <Route path='/usuarios/editar/:_id' element={<EditarUsuario />} />
                 <Route path='page2' element={<Page2 />} />
                 <Route path='category1' element={<IndexCategory1 />} />
                 <Route path='category1/page1' element={<Category1 />} />
